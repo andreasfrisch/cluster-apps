@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: hello-world
-  namespace: default
+  namespace: hello-world
 spec:
   rules:
     - host: test.metube.dk   # <-- replace with your test subdomain
