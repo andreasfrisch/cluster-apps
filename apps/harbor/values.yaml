@@ -1,0 +1,10 @@
+expose:
+  type: ingress
+  ingress:
+    hosts:
+      core: harbor.metube.dk
+    controller: traefik
+    annotations: {}
+    tls:
+      enabled: false
+externalURL: http://harbor.metube.dk
