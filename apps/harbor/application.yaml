@@ -10,8 +10,16 @@ spec:
     chart: harbor
     targetRevision: 1.15.0
     helm:
-      valueFiles:
-        - values.yaml
+      valueObject:
+        expose:
+          type: ingress
+          ingress:
+            hosts:
+              core: harbor.metube.dk
+            annotations: {}
+          tls:
+            enabled: false
+        externalUrl: "http://harbor.metube.dk"
   destination:
     server: https://kubernetes.default.svc
     namespace: harbor
