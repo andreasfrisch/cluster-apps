@@ -4,6 +4,7 @@ expose:
     hosts:
       core: harbor.metube.dk
     controller: traefik
+    className: traefik
     annotations:
       kubernetes.io/ingress.class: traefik
     tls:
