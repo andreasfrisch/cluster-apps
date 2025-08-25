@@ -10,17 +10,8 @@ spec:
     chart: harbor
     targetRevision: 1.15.0
     helm:
-      values:
-        - |
-          expose:
-            type: ingress
-            ingress:
-              hosts:
-                core: harbor.metube.dk
-              className: traefik
-            tls:
-              enabled: false
-          externalURL: http://harbor.metube.dk
+      valueFiles:
+        - values.yaml
   destination:
     server: https://kubernetes.default.svc
     namespace: harbor
