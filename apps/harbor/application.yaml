@@ -10,7 +10,7 @@ spec:
     chart: harbor
     targetRevision: 1.15.0
     helm:
-      valueObject:
+      valuesObject:
         expose:
           type: ingress
           ingress:
