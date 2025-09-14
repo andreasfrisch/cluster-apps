@@ -16,10 +16,15 @@ spec:
           ingress:
             hosts:
               core: harbor.metube.dk
-            annotations: {}
+            annotations:
+              kubernetes.io/ingress.class: traefik
+              cert-manager.io/cluster-issuer: letsencrypt-prod
           tls:
-            enabled: false
-        externalUrl: "http://harbor.metube.dk"
+            enabled: true
+            certSource: secret
+            secret:
+              secretName: harbor-tls
+        externalURL: "https://harbor.metube.dk"
   destination:
     server: https://kubernetes.default.svc
     namespace: harbor
