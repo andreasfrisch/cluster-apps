@@ -3,9 +3,12 @@ kind: Ingress
 metadata:
   name: hello-world
   namespace: hello-world
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-    - host: test.metube.dk   # <-- replace with your test subdomain
+    - host: test.metube.dk
       http:
         paths:
           - path: /
@@ -15,3 +18,7 @@ spec:
                 name: hello-world
                 port:
                   number: 80
+  tls:
+    - hosts:
+        - test.metube.dk
+      secretName: test-tls
