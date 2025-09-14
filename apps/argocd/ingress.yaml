@@ -17,8 +17,7 @@ spec:
                 name: argocd-server
                 port:
                   number: 80
-  # Optional: remove this if you want plain HTTP
-  # tls:
-  #   - hosts:
-  #       - argocd.metube.dk
-  #     secretName: argocd-tls
+  tls:
+    - hosts:
+        - argocd.metube.dk
+      secretName: argocd-tls
