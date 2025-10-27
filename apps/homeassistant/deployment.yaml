@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-assistant
+  namespace: home-assistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: home-assistant
+  template:
+    metadata:
+      labels:
+        app: home-assistant
+    spec:
+      ## not necessary for single-node servers
+      #nodeSelector:
+      #  kubernetes.io/hostname: your-node-hostname  # The node where the USB stick is
+      containers:
+        - name: home-assistant
+          image: ghcr.io/home-assistant/home-assistant:stable
+          securityContext:
+            privileged: true
+          volumeMounts:
+            - name: config
+              mountPath: /config
+            - name: usb
+              mountPath: /dev/ttyACM0
+          ports:
+            - containerPort: 8123
+              name: web
+      volumes:
+        - name: config
+          persistentVolumeClaim:
+            claimName: home-assistant-config
+        - name: usb
+          hostPath:
+            path: /dev/ttyACM0
+            type: CharDevice
