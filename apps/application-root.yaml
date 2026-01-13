@@ -11,8 +11,7 @@ spec:
     path: apps
     directory:
       recurse: true
-      exclude:
-        - gallery-api
+      exclude: "gallery-api"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
