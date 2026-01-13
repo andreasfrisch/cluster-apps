@@ -15,7 +15,7 @@ spec:
   source:
     repoURL: https://github.com/andreasfrisch/cluster-apps.git
     targetRevision: main
-    path: apps/gallery-api   # folder with your deployment.yml, service.yml, ingress.yml
+    path: gallery-api/   # folder with your deployment.yml, service.yml, ingress.yml
   destination:
     server: https://kubernetes.default.svc
     namespace: metube-gallery
