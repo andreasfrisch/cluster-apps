@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gallery-api
+  namespace: metube-gallery
+spec:
+  selector:
+    app: gallery-api
+  ports:
+    - port: 80
+      targetPort: 8000
+

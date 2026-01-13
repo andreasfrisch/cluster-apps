@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gallery-api
+  namespace: metube-gallery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gallery-api
+  template:
+    metadata:
+      labels:
+        app: gallery-api
+    spec:
+      containers:
+        - name: gallery-api
+          image: harbor.metube.dk/metube/gallery-api:latest
+          ports:
+            - containerPort: 8000
+      imagePullSecrets:
+        - name: harbor-creds
