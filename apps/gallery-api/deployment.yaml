@@ -18,3 +18,5 @@ spec:
           image: harbor.metube.dk/metube/gallery-api:latest
           ports:
             - containerPort: 80
+      imagePullSecrets:
+        - name: harbor-creds
