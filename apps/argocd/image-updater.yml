@@ -1,0 +1,26 @@
+# argo-apps/argocd-image-updater.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argocd-image-updater
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/argoproj-labs/argocd-image-updater.git
+    targetRevision: stable
+    path: charts/argocd-image-updater
+    helm:
+      values: |
+        rbac:
+          create: true
+        argocd:
+          server:
+            address: argocd-server.argocd.svc.cluster.local
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: argocd
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
