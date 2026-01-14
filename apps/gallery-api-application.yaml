@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gallery-api
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/FrischWork/gallery-api.git
+    targetRevision: main
+    path: k3s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: metube-gallery
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
