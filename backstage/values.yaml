@@ -63,8 +63,10 @@ postgresql:
   enabled: true
   auth:
     username: backstage
-    password: backstage
     database: backstage
+    existingSecret: backstage-postgres
+    secretKeys:
+      adminPasswordKey: postgres-password
   primary:
     persistence:
       enabled: true
