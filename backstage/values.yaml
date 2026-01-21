@@ -14,7 +14,7 @@ ingress:
     secretName: backstage-tls
 
 backend:
-  env:
+  extraEnv:
     - name: GITHUB_CLIENT_ID
       valueFrom:
         secretKeyRef:
@@ -37,14 +37,18 @@ appConfig:
       port: 7007
 
   auth:
+    environment: production
     providers:
       github:
         production:
           clientId: ${GITHUB_CLIENT_ID}
           clientSecret: ${GITHUB_CLIENT_SECRET}
+          signIn:
+            resolvers:
+              - resolver: userNameMatchingUserEntityName
 
   organization:
-    name: MyServer
+    name: FrischWork
 
   kubernetes:
     serviceLocatorMethod:
