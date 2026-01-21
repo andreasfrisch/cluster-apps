@@ -38,6 +38,7 @@ appConfig:
 
   auth:
     environment: production
+    allowGuest: false
     providers:
       github:
         production:
