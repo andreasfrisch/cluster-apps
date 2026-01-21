@@ -6,13 +6,20 @@ metadata:
 spec:
   project: default
 
+  # Use the official Backstage Helm chart
   source:
-    repoURL: https://github.com/FrischWork/gallery-api.git
-    targetRevision: main
-    path: backstage/
+    repoURL: https://backstage.github.io/charts
+    chart: backstage
+    targetRevision: "*"
     helm:
       valueFiles:
-        - values.yaml
+        - $values/backstage/values.yaml
+
+  # Pull values.yaml from your own repo
+  sources:
+    - repoURL: https://github.com/andreasfrisch/cluster-apps.git
+      targetRevision: main
+      ref: values
 
   destination:
     server: https://kubernetes.default.svc
@@ -24,3 +31,4 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
+
