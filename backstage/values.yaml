@@ -25,6 +25,10 @@ appConfig:
 
   auth:
     providers:
+      github:
+        production:
+          clientId: ${GITHUB_CLIENT_ID}
+          clientSecret: ${GITHUB_CLIENT_SECRET}
       guest: {}
 
   organization:
@@ -39,6 +43,18 @@ appConfig:
           - name: local
             url: https://kubernetes.default.svc
             authProvider: serviceAccount
+
+extraEnvVars:
+  - name: GITHUB_CLIENT_ID
+    valueFrom:
+      secretKeyRef:
+        name: backstage-github-auth
+        key: GITHUB_CLIENT_ID
+  - name: GITHUB_CLIENT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: backstage-github-auth
+        key: GITHUB_CLIENT_SECRET
 
 postgresql:
   enabled: true
