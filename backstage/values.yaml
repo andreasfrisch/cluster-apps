@@ -13,18 +13,9 @@ ingress:
     enabled: true
     secretName: backstage-tls
 
-backend:
-  extraEnv:
-    - name: GITHUB_CLIENT_ID
-      valueFrom:
-        secretKeyRef:
-          name: backstage-github-auth
-          key: GITHUB_CLIENT_ID
-    - name: GITHUB_CLIENT_SECRET
-      valueFrom:
-        secretKeyRef:
-          name: backstage-github-auth
-          key: GITHUB_CLIENT_SECRET
+
+extraEnvVarsSecrets:
+  - backstage-github-auth
 
 appConfig:
   app:
