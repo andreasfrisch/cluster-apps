@@ -10,7 +10,7 @@ spec:
     # Use the official Backstage Helm chart
     - repoURL: https://backstage.github.io/charts
       chart: backstage
-      targetRevision: "0.9.0"
+      targetRevision: "*"
       helm:
         valueFiles:
           - $values/backstage/values.yaml
