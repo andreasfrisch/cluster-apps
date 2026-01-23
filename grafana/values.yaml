@@ -19,7 +19,7 @@ adminUser: admin
 adminPassword: admin # change later or move to a secret
 
 persistence:
-  enabled: true
+  enabled: false
   size: 1Gi
 
 grafana.ini:
