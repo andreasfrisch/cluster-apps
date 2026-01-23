@@ -12,12 +12,12 @@ spec:
       targetRevision: 7.3.9
       helm:
         valueFiles:
-          - values.yaml
+          - $values/values.yaml
         valuesObject: {}
 
     - repoURL: https://github.com/andreasfrisch/cluster-apps
       targetRevision: main
-      path: grafana
+      path: grafana/
       ref: values
 
   destination:
