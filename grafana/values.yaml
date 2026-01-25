@@ -33,6 +33,11 @@ grafana.ini:
 
 datasources: {}
 
+sidecar:
+  dashboards:
+    enabled: true
+    label: grafana_dashboard
+
 ingress:
   enabled: true
   ingressClassName: traefik
