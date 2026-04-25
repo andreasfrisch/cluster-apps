@@ -21,9 +21,11 @@ Then apply the bootstrap secrets to your cluster:
 ```bash
 kubectl create namespace external-secrets
 
-# Credentials file for the Connect server pod
+# Credentials file for the Connect server pod.
+# NOTE: must use --from-literal with base64-encoded content, NOT --from-file.
+# The Connect server expects to base64-decode this value itself.
 kubectl create secret generic onepassword-connect-credentials \
-  --from-file=1password-credentials.json=/path/to/1password-credentials.json \
+  --from-literal=1password-credentials.json="$(cat /path/to/1password-credentials.json | base64 -w 0)" \
   -n external-secrets
 
 # Access token for ESO to call the Connect server
