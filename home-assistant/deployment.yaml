@@ -26,6 +26,9 @@ spec:
               mountPath: /config
             - name: usb
               mountPath: /dev/ttyACM0
+            - name: configuration
+              mountPath: /config/configuration.yaml
+              subPath: configuration.yaml
           ports:
             - containerPort: 8123
               name: web
@@ -37,3 +40,6 @@ spec:
           hostPath:
             path: /dev/ttyACM0
             type: CharDevice
+        - name: configuration
+          configMap:
+            name: home-assistant-config
