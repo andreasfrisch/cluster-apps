@@ -24,13 +24,7 @@ spec:
             - -c
             - |
               if ! grep -q "use_x_forwarded_for" /config/configuration.yaml 2>/dev/null; then
-                cat >> /config/configuration.yaml <<'EOF'
-
-http:
-  use_x_forwarded_for: true
-  trusted_proxies:
-    - 10.42.0.0/24
-EOF
+                printf '\nhttp:\n  use_x_forwarded_for: true\n  trusted_proxies:\n    - 10.42.0.0/24\n' >> /config/configuration.yaml
               fi
           volumeMounts:
             - name: config
