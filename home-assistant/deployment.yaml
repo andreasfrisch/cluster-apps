@@ -16,6 +16,25 @@ spec:
       ## not necessary for single-node servers
       #nodeSelector:
       #  kubernetes.io/hostname: your-node-hostname  # The node where the USB stick is
+      initContainers:
+        - name: patch-config
+          image: busybox
+          command:
+            - sh
+            - -c
+            - |
+              if ! grep -q "use_x_forwarded_for" /config/configuration.yaml 2>/dev/null; then
+                cat >> /config/configuration.yaml <<'EOF'
+
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 10.42.0.0/24
+EOF
+              fi
+          volumeMounts:
+            - name: config
+              mountPath: /config
       containers:
         - name: home-assistant
           image: homeassistant/home-assistant:latest
@@ -26,9 +45,6 @@ spec:
               mountPath: /config
             - name: usb
               mountPath: /dev/ttyACM0
-            - name: configuration
-              mountPath: /config/configuration.yaml
-              subPath: configuration.yaml
           ports:
             - containerPort: 8123
               name: web
@@ -40,6 +56,3 @@ spec:
           hostPath:
             path: /dev/ttyACM0
             type: CharDevice
-        - name: configuration
-          configMap:
-            name: home-assistant-config
