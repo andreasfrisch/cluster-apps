@@ -9,7 +9,7 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   rules:
-    - host: home.metube.com
+    - host: home.metube.dk
       http:
         paths:
           - path: /
